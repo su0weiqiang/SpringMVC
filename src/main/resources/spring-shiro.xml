@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+    <!-- 使用spring组件扫描@service  -->
+    <!--<context:component-scan base-package="com.peng.service"/>-->
+    <!-- 自定义域realm -->
+    <bean id="myRealm" class="com.Shiro.UserRealm"></bean>
+    <!-- 安全管理器  ref对象-->
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="realm" ref="myRealm"/>
+    </bean>
+    <!-- shiro filter -->
+    <!-- 配置shiro的过滤器工厂类，id- shiroFilter要和我们在web.xml中配置的过滤器一致 -->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <!-- 安全管理器必须的 -->
+        <property name="securityManager" ref="securityManager"/>
+        <!-- 登录页面 -->
+        <property name="loginUrl" value="/login"/>
+        <!-- 登录成功后的页面 -->
+        <property name="successUrl" value="/success"/>
+        <!-- 非法访问跳转的页面 -->
+        <property name="unauthorizedUrl" value="/login"/>
+        <!-- 权限配置 -->
+        <property name="filterChainDefinitions">
+            <value>
+                <!-- 无需认证即可访问的静态资源，还可以添加其他 url -->
+                /static/* = anon
+                <!-- 除了上述忽略的资源，其他所有资源都需要认证后才能访问 -->
+                /* = authc
+                /login.html =anon
+            </value>
+        </property>
+    </bean>
+    <!--&lt;!&ndash; Shiro生命周期处理器 &ndash;&gt;-->
+    <!--<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"></bean>-->
+    <!--<bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">-->
+        <!--<property name="securityManager" ref="securityManager"/>-->
+    <!--</bean>-->
+
+</beans>

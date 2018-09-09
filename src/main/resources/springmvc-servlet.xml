@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                                      http://www.springframework.org/schema/beans/spring-beans.xsd
+                                      http://www.springframework.org/schema/mvc
+                                      http://www.springframework.org/schema/mvc/spring-mvc.xsd
+                                      http://www.springframework.org/schema/context
+                                      http://www.springframework.org/schema/context/spring-context.xsd
+            http://www.springframework.org/schema/security
+            http://www.springframework.org/schema/security/spring-security.xsd">
+
+
+
+
+    <!--静态资源处理方法-->
+    <mvc:default-servlet-handler/>
+
+
+    <!-- 默认扫描的包路径 -->
+    <!--扫描包的路径-->
+    <context:component-scan base-package="com.*" />
+
+
+
+
+
+    <!--导入 mybatis 的配置-->
+    <import resource="classpath:/mybatisConfig/spring-mybatis.xml" />
+
+    <!--导入 redis 的配置-->
+    <import resource="classpath:/redisConfig/spring-redis.xml" />
+
+
+    <!--导入 shiro 的配置-->
+    <import resource="classpath:spring-shiro.xml" />
+
+
+    <!--开启注解-->
+    <mvc:annotation-driven />
+
+
+<!--spring security 配置-->
+    <!--<security:http auto-config="true">-->
+        <!--<security:intercept-url pattern="/admin**" access="hasRole('ROLE_USER')"/>-->
+    <!--</security:http>-->
+
+    <!--<security:authentication-manager>-->
+        <!--<security:authentication-provider>-->
+            <!--<security:user-service>-->
+                <!--<security:user name="101" password="123456" authorities="ROLE_USER" />-->
+            <!--</security:user-service>-->
+        <!--</security:authentication-provider>-->
+    <!--</security:authentication-manager>-->
+
+
+
+    <!-- SpringResourceTemplateResolver自动与Spring自己集成 -->
+    <!-- 资源解决基础设施, 强烈推荐。 -->
+    <bean id="templateResolver"
+          class="org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver">
+        <property name="prefix" value="/templates/" />
+        <property name="suffix" value=".html" />
+
+        <!-- 默认情况下, 模板缓存为true。如果您想要设置为false -->
+        <!-- 模板在修改时自动更新。 -->
+        <property name="cacheable" value="false" />
+        <!-- 解决中文乱码 -->
+        <property name="characterEncoding" value="UTF-8"/>
+    </bean>
+
+    <!-- 模板解析器  -->
+    <bean id="templateEngine" class="org.thymeleaf.spring4.SpringTemplateEngine">
+        <property name="templateResolver" ref="templateResolver" />
+    </bean>
+
+    <bean class="org.thymeleaf.spring4.view.ThymeleafViewResolver">
+        <property name="templateEngine" ref="templateEngine" />
+        <!-- 解决中文乱码 -->
+        <property name="characterEncoding" value="UTF-8"/>
+    </bean>
+
+
+
+</beans>
