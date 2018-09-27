@@ -41,8 +41,33 @@
     <!--开启注解-->
     <mvc:annotation-driven />
 
+    <!-- 拦截器 -->
+    <mvc:interceptors>
+        <!--CSRF referer验证的拦截器-->
+        <mvc:interceptor>
+            <!--url路径-->
+            <mvc:mapping path="/**" />
+            <mvc:exclude-mapping path="/assets/**" />
+            <bean class="com.Interceptor.CSRFRefererInterceptor"></bean>
+        </mvc:interceptor>
 
-<!--spring security 配置-->
+
+        <!--CSRF token验证的拦截器-->
+        <!--<mvc:interceptor>-->
+        <!--<mvc:mapping path="/company/jgb/history/dw/getYbxxHistory" />-->
+        <!--<mvc:exclude-mapping path="/assets/**" />-->
+        <!--<bean class="com.ylzinfo.framework.interceptor.CSRFTokenInterceptor"></bean>-->
+        <!--</mvc:interceptor>-->
+
+        <!-- 防SQL注入 -->
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/assets/**" />
+            <bean class="com.Interceptor.SqlInjectInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+    <!--spring security 配置-->
     <!--<security:http auto-config="true">-->
         <!--<security:intercept-url pattern="/admin**" access="hasRole('ROLE_USER')"/>-->
     <!--</security:http>-->
