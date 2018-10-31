@@ -17,7 +17,7 @@
 
     <!--因为属性文件-->
         <!--使用多个property-placeholder 引入 properties 文件的时候  ignore-unresolvable="true" 要加入这个-->
-    <context:property-placeholder ignore-unresolvable="true" location="classpath:/redisConfig/redis.properties" />
+    <!--<context:property-placeholder ignore-unresolvable="true" location="classpath:/redisConfig/redis.properties" />-->
 
 
     <!-- redis缓存数据库的相关配置 -->

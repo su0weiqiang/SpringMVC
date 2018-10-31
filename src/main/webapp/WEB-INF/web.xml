@@ -6,7 +6,19 @@
 
     <!--classpath   代表是 src/main/reources/-->
 
-
+    <filter>
+        <description>配置字符编码过滤器</description>
+        <filter-name>encoding</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>encoding</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 
     <!--设置log4j的配置文件位置-->
     <context-param>

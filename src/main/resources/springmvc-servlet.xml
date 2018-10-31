@@ -21,10 +21,18 @@
 
     <!-- 默认扫描的包路径 -->
     <!--扫描包的路径-->
-    <context:component-scan base-package="com.*" />
+    <context:component-scan base-package="com.swq" />
 
 
 
+    <!-- 加载配置文件 -->
+    <bean id="propertyConfigurer" class="com.swq.util.PropertyConfigUtil">
+        <property name="locations">
+            <list>
+                <value>classpath:config.properties</value>
+            </list>
+        </property>
+    </bean>
 
 
     <!--导入 mybatis 的配置-->
@@ -41,6 +49,31 @@
     <!--开启注解-->
     <mvc:annotation-driven />
 
+    <!-- json转换 -->
+    <mvc:annotation-driven>
+        <mvc:message-converters>
+            <!-- 解决Ajax返回json字符串的中文乱码问题 -->
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter" />
+            <!-- <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" /> -->
+            <bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>application/json;charset=UTF-8</value>
+                        <value>application/*+json;charset=UTF-8</value>
+                    </list>
+                </property>
+                <property name="features">
+                    <array>
+                        <value>WriteMapNullValue</value>
+                        <value>WriteNullStringAsEmpty</value>
+                        <value>WriteNullListAsEmpty</value>
+                        <value>WriteDateUseDateFormat</value>
+                        <value>DisableCircularReferenceDetect</value>
+                    </array>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
     <!-- 拦截器 -->
     <mvc:interceptors>
         <!--CSRF referer验证的拦截器-->
@@ -48,7 +81,7 @@
             <!--url路径-->
             <mvc:mapping path="/**" />
             <mvc:exclude-mapping path="/assets/**" />
-            <bean class="com.Interceptor.CSRFRefererInterceptor"></bean>
+            <bean class="com.swq.Interceptor.CSRFRefererInterceptor"></bean>
         </mvc:interceptor>
 
 
@@ -56,14 +89,14 @@
         <!--<mvc:interceptor>-->
         <!--<mvc:mapping path="/company/jgb/history/dw/getYbxxHistory" />-->
         <!--<mvc:exclude-mapping path="/assets/**" />-->
-        <!--<bean class="com.ylzinfo.framework.interceptor.CSRFTokenInterceptor"></bean>-->
+        <!--<bean class="com.swq.framework.interceptor.CSRFTokenInterceptor"></bean>-->
         <!--</mvc:interceptor>-->
 
         <!-- 防SQL注入 -->
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
             <mvc:exclude-mapping path="/assets/**" />
-            <bean class="com.Interceptor.SqlInjectInterceptor"/>
+            <bean class="com.swq.Interceptor.SqlInjectInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
 

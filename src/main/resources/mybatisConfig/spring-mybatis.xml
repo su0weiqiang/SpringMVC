@@ -24,7 +24,7 @@
                      <!--</list>-->
                  <!--</property>-->
     <!--</bean>-->
-    <context:property-placeholder  ignore-unresolvable="true" location="classpath:/mybatisConfig/jdbc.properties" />
+    <!--<context:property-placeholder  ignore-unresolvable="true" location="classpath:/mybatisConfig/jdbc.properties" />-->
 
     <!-- 数据源 -->
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
@@ -70,7 +70,7 @@
         <!-- 配置MyBaties全局配置文件:mybatis-config.xml -->
         <property name="configLocation" value="classpath:/mybatisConfig/mybatis-config.xml" />
         <!-- 扫描entity包 使用别名 -->
-        <property name="typeAliasesPackage" value="com.Dao.Entity.*" />
+        <property name="typeAliasesPackage" value="com.swq.Dao.Entity.*" />
         <!-- 扫描sql配置文件:mapper需要的xml文件 -->
         <property name="mapperLocations" value="classpath:/mybatisMapper/*.xml" />
     </bean>
@@ -80,7 +80,7 @@
         <!-- 注入sqlSessionFactory -->
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
         <!-- 给出需要扫描Dao接口包 -->
-        <property name="basePackage" value="com.Dao.Mapper.*" />
+        <property name="basePackage" value="com.swq.Dao.Mapper.*" />
     </bean>
 
 

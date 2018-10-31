@@ -10,7 +10,7 @@
     <!-- 使用spring组件扫描@service  -->
     <!--<context:component-scan base-package="com.peng.service"/>-->
     <!-- 自定义域realm -->
-    <bean id="myRealm" class="com.Shiro.UserRealm"></bean>
+    <bean id="myRealm" class="com.swq.Shiro.UserRealm"></bean>
     <!-- 安全管理器  ref对象-->
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
         <property name="realm" ref="myRealm"/>
@@ -32,7 +32,8 @@
                 <!-- 无需认证即可访问的静态资源，还可以添加其他 url -->
                 /static/* = anon
                 <!-- 除了上述忽略的资源，其他所有资源都需要认证后才能访问 -->
-                /* = authc
+                <!--/* = authc-->
+                /* = anon
                 /login.html =anon
             </value>
         </property>
