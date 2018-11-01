@@ -6,6 +6,7 @@ import com.swq.WeiXinBasePackage.domain.ResponseTextMessage;
 import com.swq.WeiXinBasePackage.enums.RequestMessageEnum;
 import com.swq.WeiXinBasePackage.exception.NoMatchedMsgException;
 import com.swq.WeiXinBasePackage.manager.MessageManager;
+import com.swq.WeiXinBasePackage.util.WeChatMenuUtil;
 import org.dom4j.DocumentException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,6 +42,7 @@ public class WechatController {
         logger.info("=============================");
         boolean flag=checkSignature(nonce, timestamp, signature, token);
         if (flag) {
+
             write(response, echostr);
         } else {
             write(response, "false");

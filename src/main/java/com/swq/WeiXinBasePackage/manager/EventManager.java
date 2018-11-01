@@ -117,7 +117,7 @@ public class EventManager {
 	@PostConstruct
 	public void init() throws ClassNotFoundException, IOException {
 		initAnnotations();// 先初始化注解
-		initMapperFile();// 再初始化配置文件
+//		initMapperFile();// 再初始化配置文件
 
 	}
 
@@ -183,7 +183,7 @@ public class EventManager {
 		return key;
 	}
 
-	@Value("${menu_basePackage:com.swq")
+	@Value("${menu_basePackage:com.swq.WeChatResponsePackage.menu")
 	public void setBasePackage(String basePackage) {
 		this.basePackage = basePackage;
 	}

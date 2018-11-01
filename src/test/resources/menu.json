@@ -1,0 +1,42 @@
+{
+    "button": [{
+        "name": "苏伟强",
+        "sub_button": [{
+            "type": "click",
+            "name": "我是大佬",
+            "key": "11"
+        }, {
+            "type": "click",
+            "name": "我是傻逼",
+            "key": "12"
+        }, {
+            "type": "click",
+            "name": "哈哈哈",
+            "key": "13"
+        }]
+    }, {
+        "name": "苏伟强1",
+        "type": "view",
+        "url": "Property(base_url)/server/index"
+    }, {
+        "name": "更多",
+        "sub_button": [
+        {
+            "type": "click",
+            "name": "苏伟强1",
+            "key": "31"
+        }, {
+            "type": "view",
+            "name": "苏伟强1",
+            "url": "http://www.baidu.com"
+        }, {
+            "type": "click",
+            "name": "苏伟强1",
+            "key": "33"
+        }, {
+            "type": "view",
+            "name": "苏伟强1",
+            "url": "Property(base_url)/serverPhoneList"
+        }]
+    }]
+}

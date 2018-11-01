@@ -1,0 +1,42 @@
+{
+    "button": [{
+        "name": "查询",
+        "sub_button": [{
+            "type": "click",
+            "name": "我的就业",
+            "key": "11"
+        }, {
+            "type": "click",
+            "name": "我的社保",
+            "key": "12"
+        }, {
+            "type": "click",
+            "name": "我的档案",
+            "key": "13"
+        }]
+    }, {
+        "name": "服务",
+        "type": "view",
+        "url": "Property(base_url)/server/index"
+    }, {
+        "name": "更多",
+        "sub_button": [
+        {
+            "type": "click",
+            "name": "政策法规",
+            "key": "31"
+        }, {
+            "type": "view",
+            "name": "热点问题",
+            "url": "http://www.xmhrss.gov.cn/ztzl/12333/rdwt"
+        }, {
+            "type": "click",
+            "name": "服务指南",
+            "key": "33"
+        }, {
+            "type": "view",
+            "name": "联系方式",
+            "url": "Property(base_url)/serverPhoneList"
+        }]
+    }]
+}
